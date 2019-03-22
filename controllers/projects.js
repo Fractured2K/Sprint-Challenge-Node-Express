@@ -54,4 +54,7 @@ router.get("/:id", async (req, res) => {
 	}
 });
 
+// Update project
+router.put("/", async (req, res) => {});
+
 module.exports = router;
