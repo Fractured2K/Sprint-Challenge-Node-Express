@@ -2,6 +2,9 @@ const router = require("express").Router();
 
 const Project = require("../data/helpers/projectModel");
 
+// Create project
+router.post("/", async (req, res) => {});
+
 // Get all projects
 router.get("/", async (req, res) => {
 	try {
