@@ -3,7 +3,18 @@ const router = require("express").Router();
 const Project = require("../data/helpers/projectModel");
 
 // Create project
-router.post("/", async (req, res) => {});
+router.post("/", async (req, res) => {
+	try {
+		const project = req.body;
+
+		const newProject = await Project.insert(project);
+		res.status(201).json(newProject);
+	} catch (err) {
+		res.status(500).json({
+			message: "Sorry, there was an error creating that project"
+		});
+	}
+});
 
 // Get all projects
 router.get("/", async (req, res) => {
