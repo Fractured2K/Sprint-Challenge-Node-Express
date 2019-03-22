@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const Project = require("../data/helpers/projectModel");
 
+// Get all projects
 router.get("/", async (req, res) => {
 	try {
 		const projects = await Project.get();
@@ -18,5 +19,8 @@ router.get("/", async (req, res) => {
 		});
 	}
 });
+
+// Get project by id
+router.get("/:id", async (req, res) => {});
 
 module.exports = router;
