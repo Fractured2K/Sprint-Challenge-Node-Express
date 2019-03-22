@@ -44,6 +44,22 @@ router.get("/:id", async (req, res) => {
 	}
 });
 
+// Get project acitons
+router.get("/actions/:id", async (req, res) => {
+	try {
+		const { id } = req.params;
+
+		const actions = await Project.getProjectActions(id);
+
+		if (!actions)
+			return res.status(404).json({
+				message: "Sorry, no actions were found for that project"
+			});
+
+		res.status(200).json(actions);
+	} catch (error) {}
+});
+
 // Update project
 router.put("/:id", async (req, res) => {
 	try {
@@ -51,12 +67,6 @@ router.put("/:id", async (req, res) => {
 		const project = req.body;
 
 		const updatedProject = await Project.update(id, project);
-
-		if (!updatedProject)
-			return res
-				.status(404)
-				.json({ message: "Sorry, that project doesn't exist" });
-
 		res.status(200).json(updatedProject);
 	} catch (err) {
 		res.status(500).json({
