@@ -2,8 +2,8 @@ const router = require("express").Router();
 
 const Action = require("../data/helpers/actionModel");
 
-const { actionCheck } = require("../middleware/actions");
 // middleware
+const { actionCheck } = require("../middleware/actions");
 
 // Create action
 router.post("/", actionCheck, async (req, res) => {
