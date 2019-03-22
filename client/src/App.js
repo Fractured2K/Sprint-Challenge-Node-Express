@@ -3,12 +3,14 @@ import { Route } from "react-router-dom";
 import "./App.css";
 
 import ProjectList from "./components/ProjectList";
+import Project from "./components/Project";
 
 class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<ProjectList />
+				<Route exact path="/" component={ProjectList} />
+				<Route exact path="/projects/4" component={Project} />
 			</div>
 		);
 	}
