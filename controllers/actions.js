@@ -2,8 +2,11 @@ const router = require("express").Router();
 
 const Action = require("../data/helpers/actionModel");
 
+const { actionCheck } = require("../middleware/actions");
+// middleware
+
 // Create action
-router.post("/", async (req, res) => {
+router.post("/", actionCheck, async (req, res) => {
 	try {
 		const action = req.body;
 
@@ -44,7 +47,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Update action
-router.put("/:id", async (req, res) => {
+router.put("/:id", actionCheck, async (req, res) => {
 	try {
 		const { id } = req.params;
 		const action = req.body;
