@@ -21,7 +21,6 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
 	try {
 		const projects = await Project.get();
-
 		return res.status(200).json(projects);
 	} catch (err) {
 		res.status(500).json({
@@ -50,12 +49,6 @@ router.get("/actions/:id", async (req, res) => {
 		const { id } = req.params;
 
 		const actions = await Project.getProjectActions(id);
-
-		if (!actions)
-			return res.status(404).json({
-				message: "Sorry, no actions were found for that project"
-			});
-
 		res.status(200).json(actions);
 	} catch (error) {}
 });
@@ -67,6 +60,12 @@ router.put("/:id", async (req, res) => {
 		const project = req.body;
 
 		const updatedProject = await Project.update(id, project);
+
+		if (!updatedProject)
+			return res
+				.status(404)
+				.json({ message: "Sorry, that project doesn't exist" });
+
 		res.status(200).json(updatedProject);
 	} catch (err) {
 		res.status(500).json({
