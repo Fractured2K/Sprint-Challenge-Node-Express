@@ -64,4 +64,7 @@ router.put("/:id", async (req, res) => {
 	}
 });
 
+// Delete action
+router.delete("/:id", async (req, res) => {});
+
 module.exports = router;
