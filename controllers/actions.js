@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const Action = require("../data/helpers/actionModel");
 
+// Create action
 router.post("/", async (req, res) => {
 	try {
 		const action = req.body;
@@ -14,5 +15,8 @@ router.post("/", async (req, res) => {
 		});
 	}
 });
+
+// Get all actions
+router.get("/", async (req, res) => {});
 
 module.exports = router;
