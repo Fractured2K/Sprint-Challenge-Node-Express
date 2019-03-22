@@ -75,4 +75,7 @@ router.put("/:id", async (req, res) => {
 	}
 });
 
+// Delete project
+router.delete("/:id", async (req, res) => {});
+
 module.exports = router;
