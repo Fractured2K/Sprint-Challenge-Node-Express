@@ -7,6 +7,7 @@ class ProjectList extends Component {
 	state = {
 		projects: []
 	};
+
 	componentDidMount = () => {
 		axios
 			.get("http://localhost:3001/api/projects")
@@ -23,7 +24,6 @@ class ProjectList extends Component {
 	render() {
 		return (
 			<div>
-				<h1>hello</h1>
 				{this.state.projects.map(project => (
 					<Project {...project} key={project.id} />
 				))}
