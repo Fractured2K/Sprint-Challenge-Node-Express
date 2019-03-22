@@ -65,6 +65,17 @@ router.put("/:id", async (req, res) => {
 });
 
 // Delete action
-router.delete("/:id", async (req, res) => {});
+router.delete("/:id", async (req, res) => {
+	try {
+		const { id } = req.params;
+
+		const action = await Action.remove(id);
+		res.status(200).json(action);
+	} catch (error) {
+		res.status(500).json({
+			message: "Sorry, we couldn't delete that action"
+		});
+	}
+});
 
 module.exports = router;
