@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const Project = require("../data/helpers/projectModel");
+const Action = require("../data/helpers/actionModel");
 
 // Create project
 router.post("/", async (req, res) => {
@@ -79,15 +80,25 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
+		const project = await Project.get(id);
 
-		const project = await Project.remove(id);
-
+		// check to see if project exists
 		if (!project)
 			return res
 				.status(404)
 				.json({ message: "Sorry, that project doesn't exist" });
 
-		return res.status(200).json(project);
+		// Get all project actions
+		const projectActions = await Project.getProjectActions(id);
+
+		// Delete each action from project
+		projectActions.forEach(async action => {
+			await Action.remove(action.id);
+		});
+
+		// delete project
+		const deletedProject = await Project.remove(id);
+		return res.status(200).json(deletedProject);
 	} catch (err) {
 		res.status(500).json({
 			message: "Sorry, there was an error trying to delete that project"
