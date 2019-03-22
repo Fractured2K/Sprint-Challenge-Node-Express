@@ -44,6 +44,24 @@ router.get("/:id", async (req, res) => {
 });
 
 // Update action
-router.put("/:id", async (req, res) => {});
+router.put("/:id", async (req, res) => {
+	try {
+		const { id } = req.params;
+		const action = req.body;
+
+		const updatedAction = await Action.update(id, action);
+
+		if (!updatedAction)
+			res.status(404).json({
+				message: "Sorry, that action doesn't exist"
+			});
+
+		res.status(200).json(updatedAction);
+	} catch (err) {
+		res.status(500).json({
+			message: "Sorry, we couldn't update that action"
+		});
+	}
+});
 
 module.exports = router;
