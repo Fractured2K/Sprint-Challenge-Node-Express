@@ -3,8 +3,11 @@ const router = require("express").Router();
 const Project = require("../data/helpers/projectModel");
 const Action = require("../data/helpers/actionModel");
 
+// middleware
+const { projectCheck } = require("../middleware/projects");
+
 // Create project
-router.post("/", async (req, res) => {
+router.post("/", projectCheck, async (req, res) => {
 	try {
 		const project = req.body;
 
@@ -54,7 +57,7 @@ router.get("/actions/:id", async (req, res) => {
 });
 
 // Update project
-router.put("/:id", async (req, res) => {
+router.put("/:id", projectCheck, async (req, res) => {
 	try {
 		const { id } = req.params;
 		const project = req.body;
