@@ -25,14 +25,24 @@ In this challenge, create a web API around the following resources: `Projects` a
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] Mention two parts of Express that you learned about this week.
-
+  
+   -   middleware and routing in express.
+  
 - [ ] Describe Middleware?
+
+  -   Middleware is code that lies in-between your application giving you the ability to perform certain tasks like executing code, making changes to the request and response objects, ending the request-reponse cycle and even just calling the next middleware stack.
 
 - [ ] Describe a Resource?
 
+  -   A resource is a operation you can perform on data. There are four operations that you can do, you can post data to create it, you can get data to read, you can put data to update it and you can delete data to get rid of it. This is known as CRUD, which stands for Create, Read, Update, Delete.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+  -   a response status of 200 and data if needed
+
 - [ ] How can we partition our application into sub-applications?
+
+   -   You can do that by using express router.
 
 ## Project Setup
 
